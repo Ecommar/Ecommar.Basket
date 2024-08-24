@@ -1,0 +1,39 @@
+{
+  "name": "ecommar.basket",
+  "version": "1.0.0",
+  "description": "<!-- /Ecommar.Basket\r |-- src/\r |   |-- basket/\r |   |   |-- dto/               # Data Transfer Objects\r |   |   |-- interfaces/        # TypeScript interfaces\r |   |   |-- entities/          # Database models\r |   |   |-- services/          # Business logic\r |   |   |-- controllers/       # Route handlers\r |   |   |-- repository/        # Data access logic\r |   |-- config/                # Configuration management\r |   |-- common/                # Common utilities and middlewares\r |   |-- filters/               # Error handling filters\r |   |-- guards/                # Auth guards\r |   |-- interceptors/          # Interceptors for logging, etc.\r |   |-- pipes/                 # Custom pipes\r |-- test/                      # Test cases\r |-- docker/                    # Dockerfiles and related scripts\r |-- docs/                      # Documentation\r |-- .env                       # Environment-specific settings\r |-- .gitignore                 # Specifies intentionally untracked files to ignore\r |-- nest-cli.json              # Nest CLI configuration\r |-- package.json               # Node.js dependencies and scripts\r |-- tsconfig.json              # TypeScript configuration\r |-- README.md                  # Project overview and setup instructions -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nest start",
+    "start:dev": "nest start --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs-modules/ioredis": "^2.0.2",
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/core": "^10.3.8",
+    "@nestjs/microservices": "^10.4.1",
+    "@nestjs/platform-express": "^10.3.8",
+    "@nestjs/swagger": "^7.3.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "ioredis": "^5.4.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.3.8",
+    "@types/node": "^20.12.10",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
