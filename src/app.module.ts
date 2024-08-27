@@ -1,10 +1,8 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
-import { RedisService } from './basket/services/redis.service';
-import { BasketController } from './basket/controllers/basket.controller';
-
+import { BasketModule } from './basket/basket.module';
 
 @Module({
-  providers: [RedisService],  // Registering RedisService as a provider
-  controllers: [BasketController],  // Registering BasketController
+  imports: [BasketModule], // Importing BasketModule
 })
 export class AppModule { }

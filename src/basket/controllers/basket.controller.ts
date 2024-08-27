@@ -1,28 +1,34 @@
 import { Controller, Post, Get, Delete, Body, Param } from '@nestjs/common';
-import { RedisService } from '../services/redis.service';
+import { BasketService } from '../services/basket.service';
+import { AddProductToBasketDto } from '../dto/add-product-to-basket.dto';
+import { CreateBasketDto } from '../dto/create-basket.dto';
 
 @Controller('basket')
 export class BasketController {
-    constructor(private readonly redisService: RedisService) { }
+    constructor(private readonly basketService: BasketService) { }
+
+    // New endpoint to create a basket for a user
+    @Post('create')
+    async createBasket(@Body() createBasketDto: CreateBasketDto) {
+        return await this.basketService.createBasket(createBasketDto);
+    }
 
     @Post(':userId')
-    async addItem(@Param('userId') userId: string, @Body() item: any) {
-        // Get the current basket for the user, or initialize an empty array if none exists
-        let basket = await this.redisService.getBasket(userId);
-        basket = basket ? basket : [];
-        basket.push(item);  // Add the item to the basket
-        await this.redisService.setBasket(userId, basket);  // Save the updated basket
-        return basket;  // Return the updated basket
+    async addItem(@Param('userId') userId: string, @Body() addProductDto: AddProductToBasketDto) {
+        // Use BasketService to add a product to the user's basket
+        return await this.basketService.addProductToBasket(userId, addProductDto);
     }
 
     @Get(':userId')
     async getBasket(@Param('userId') userId: string) {
-        return await this.redisService.getBasket(userId);  // Retrieve and return the basket for the user
+        // Use BasketService to retrieve the user's basket
+        return await this.basketService.getBasketById(userId);
     }
 
     @Delete(':userId')
     async clearBasket(@Param('userId') userId: string) {
-        await this.redisService.clearBasket(userId);  // Clear the basket for the user
-        return { message: 'Basket cleared' };  // Return a confirmation message
+        // Use BasketService to clear the user's basket
+        await this.basketService.clearBasket(userId);
+        return { message: 'Basket cleared' };
     }
 }
